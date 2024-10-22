@@ -1,0 +1,142 @@
+.no-scrollbar::-webkit-scrollbar {
+  height: 18px;
+  background-color: #f5f5f5; 
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e0e0e0; 
+  border-radius: 10px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #c0c0c0; 
+}
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.hover-card:hover {
+  transform: translateY(-10px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 20px; 
+  padding: 20px; 
+}
+
+.property-card {
+  background: #fff; 
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  padding: 10px; 
+  text-align: left;
+}
+
+.carousel-container {
+  margin-top: 10px; 
+}
+/* 
+/* Add this to your CSS file */
+.search-form {
+  width: 100%; /* Full width */
+}
+
+.search-input {
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px; /* Padding for input */
+}
+
+.dropdown-toggle {
+  display: flex; /* Flexbox for centering the icon */
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+}
+
+.dropdown-menu {
+  min-width: 250px; /* Adjust width for dropdown */
+}
+/* Add this to your CSS file */
+
+.filter-dropdown-menu {
+  z-index: 1050; /* Adjust this value as needed */
+  position: absolute; /* Ensure it's positioned above other content */
+}
+
+/* Ensure the navbar has a high enough z-index */
+.navbar {
+  z-index: 1000; /* Adjust this value if necessary */
+} */
+
+
+.search-bar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.search-bar {
+  margin-left: 80px;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  border-color: #fff;
+  border-style:groove;
+  width: 900px; /* Adjust width as per your design */
+}
+#mainsearch{
+  margin-top: 20px;
+}
+.search-section {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0px;
+  color: black;
+  margin-left: 40px;
+  margin-top: 12px;
+  line-height: 1px;
+padding-top: 1px;
+}
+
+.search-input,
+.price-input {
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  color: #fff;
+  line-height: 1px;
+
+}
+
+.search-input::placeholder,
+.price-input::placeholder {
+  color: #888;
+
+}
+
+.search-btn {
+  background-color: #9ba7a5; /* Red color for button */
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 50px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: #e60050;
+}
+#well{
+  color: black;
+  margin-left: 34%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
