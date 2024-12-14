@@ -1,18 +1,21 @@
-import { StrictMode } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+// index.js (Fixed React 18+ compatibility)
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import store from './slices/store.jsx';
 import { BrowserRouter } from 'react-router-dom';
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
 import { Provider } from 'react-redux';
-import store from './store.jsx'; // Import your Redux store
+import App from './App.jsx';
+import './index.css';
+import 'flowbite/dist/flowbite.css';
 
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
