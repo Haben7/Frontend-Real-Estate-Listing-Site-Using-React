@@ -135,7 +135,7 @@ const MineProperty = () => {
                   <FontAwesomeIcon icon={faMapMarkerAlt} /> {house.location}<br />
                   <FontAwesomeIcon icon={faBed} /> {house.bedrooms} <FontAwesomeIcon icon={faShower} /> {house.bathrooms} <FontAwesomeIcon icon={faRuler} /> {house.size} sq ft
                 </Card.Text>
-                <div className='overlay d-flex align-items-center gap-4'>
+                <div className="buttons-container">
                        <Button variant="primary" onClick={() => handleOpen(house)}>View Details</Button> 
                 <Button
                   variant="primary"

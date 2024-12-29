@@ -15,7 +15,9 @@
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
-
+#discover{
+  font-size: xx-large;
+}
 .hover-card:hover {
   transform: scale(1.02); 
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
@@ -44,7 +46,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
   gap: 20px; 
-  padding: 20px; 
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .property-card {
   background: #fff; 
@@ -85,7 +88,7 @@
 
 .navbar {
   z-index: 1000; 
-} */
+} 
 
 .search-bar-container {
   width: 100%;
@@ -104,7 +107,6 @@
 #mainsearch{
   background-color: white;
 
-  /* margin-top: 35px; */
   box-shadow: 0 4px 11px rgba(0, 0, 0, 0.2); 
 }
 .search-section {
@@ -291,4 +293,21 @@ a{
   color: red;
   font-size: 14px;
 }
+.buttons-container {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+}
 
+.hover-card:hover .buttons-container {
+  display: block;
+}
+
+.hover-card {
+  position: relative; 
+  padding-bottom: 35px; 
+}
