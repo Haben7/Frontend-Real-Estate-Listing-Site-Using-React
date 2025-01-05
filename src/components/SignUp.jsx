@@ -10,8 +10,7 @@ function SignUp() {
     password: ''
   });
 
-  const navigate = useNavigate(); // For navigation
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -21,15 +20,9 @@ function SignUp() {
     try {
       const response = await axios.post('http://localhost:8000/api/user/register', formData);
       console.log('User registered:', response.data);
-      
-      // Assuming the user ID is returned in response.data.user._id
       const userId = response.data.user.id;
-
-      // Store the user data in localStorage (optional)
       localStorage.setItem('user', JSON.stringify(response.data.user));
-
-      // Redirect the user to their personalized page
-      navigate(`/Mine/${userId}`); // Pass userId here
+      navigate(`/Mine/${userId}`); 
 
     } catch (error) {
       console.error('Registration error:', error.response?.data || error.message);

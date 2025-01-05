@@ -1,4 +1,3 @@
-// BackgroundVideo.js
 import React from 'react';
 import '../styles/video.css'; 
 import NavBar from './NavBar';
@@ -18,10 +17,7 @@ const Hero = () => {
     Your browser does not support the video tag.
   </video>
       <NavBar/>
-      {/* <CityCarousel /> */}
-
       <div className="overlay-text">
-
         <h1>effortless property discovery</h1>
         <SearchFilter />
 

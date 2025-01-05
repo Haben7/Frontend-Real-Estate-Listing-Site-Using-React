@@ -31,7 +31,7 @@ const MineCity = () => {
     };
 
     const handleCityClick = (city) => {
-        navigate(`/houses/${city}`);
+        navigate(`/house/${city}`);
     };
 
     return (

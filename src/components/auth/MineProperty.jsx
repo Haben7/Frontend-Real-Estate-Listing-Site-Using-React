@@ -8,12 +8,10 @@ import '../styles/Chat.css';
 import { Pagination } from "flowbite-react";
 
 
-
 const MineProperty = () => {
   const [houses, setHouses] = useState([]);
   const [savedHouse, setSavedHouse] = useState(() => {
-    // Retrieve saved houses from localStorage on initial load
-    const saved = localStorage.getItem('favoriteHouses');
+  const saved = localStorage.getItem('favoriteHouses');
     return saved ? JSON.parse(saved) : [];
   });  
   const [selectedHouse, setSelectedHouse] = useState(null);
@@ -52,9 +50,9 @@ const MineProperty = () => {
   // Fetch houses and bookmarked houses
   const fetchHouses = async (page = 1) => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/houses?page=${page}&limit=12`); // Pass page and limit
+      const response = await axios.get(`http://localhost:8000/api/houses?page=${page}&limit=12`); 
       setHouses(response.data.data);
-      setTotalPages(response.data.totalPages);  // Set the total pages
+      setTotalPages(response.data.totalPages);  
     } catch (err) {
       console.error('Error fetching houses:', err);
       setError('Failed to fetch properties');
@@ -72,23 +70,26 @@ const MineProperty = () => {
 
 
   const addFavoriteHouse = (house) => {
+    if (!house.id) {
+        console.error("House ID is missing:", house);
+        return;
+    }
     const updatedFavorites = [...savedHouse, house];
     setSavedHouse(updatedFavorites);
-    localStorage.setItem('favoriteHouses', JSON.stringify(updatedFavorites)); // Save to localStorage
-  };
+    localStorage.setItem('favoriteHouses', JSON.stringify(updatedFavorites));
+};
 
   const removeFavoriteHouse = (houseId) => {
     const updatedFavorites = savedHouse.filter((favHouse) => favHouse.id !== houseId);
     setSavedHouse(updatedFavorites);
-    localStorage.setItem('favoriteHouses', JSON.stringify(updatedFavorites)); // Update localStorage
+    localStorage.setItem('favoriteHouses', JSON.stringify(updatedFavorites)); 
   };
 
-  const isFavorite = (houseId) => {
-    return savedHouse.some((favHouse) => favHouse.id === houseId);
-  };
+  const isFavorite = (houseId) => savedHouse.some((favHouse) => favHouse.id === houseId);
+
 
   useEffect(() => {
-    // Synchronize the saved houses with localStorage when the state changes
+    
     localStorage.setItem('favoriteHouses', JSON.stringify(savedHouse));
   }, [savedHouse]);
   return (
@@ -127,23 +128,34 @@ const MineProperty = () => {
                 </button>
               </div>
               <Card.Body className='body'>
-                <Card.Title>Posted By: {house.real_estate_name} </Card.Title>
+                <Card.Title>Posted By: { house.real_estate_name} </Card.Title>
+                <p>Site Name: {house.site_name}</p>
+
                 <Card.Title>{house.title}</Card.Title>
                 <Card.Text>
-                  Lebu Site<br/>
-                  <strong>Price: </strong>{house.price} Birr, {house.negotiable ? 'Negotiable' : 'Fixed'}<br />
+               
+                <strong>Price: </strong>{house.price} Birr, {house.negotiable ? 'Negotiable' : 'Fixed'}<br />
                   <FontAwesomeIcon icon={faMapMarkerAlt} /> {house.location}<br />
                   <FontAwesomeIcon icon={faBed} /> {house.bedrooms} <FontAwesomeIcon icon={faShower} /> {house.bathrooms} <FontAwesomeIcon icon={faRuler} /> {house.size} sq ft
                 </Card.Text>
                 <div className="buttons-container">
-                       <Button variant="primary" onClick={() => handleOpen(house)}>View Details</Button> 
-                <Button
-                  variant="primary"
-                  onClick={() => addFavoriteHouse(house)}
-                  
-                >
-                  Add to Favorites
-                </Button>
+                       <Button variant="primary" 
+                      className="text-black bg-blue-200"
+                       onClick={() => handleOpen(house)}>View Details</Button> 
+              <Button
+                    variant="outline-secondary"
+                    onClick={() =>
+                      isFavorite(house.id)
+                        ? removeFavoriteHouse(house.id)
+                        : addFavoriteHouse(house)
+                    }
+                    style={{ marginLeft: '40%' }}
+                  >
+                    <FontAwesomeIcon
+                      icon={isFavorite(house.id) ? faSolidBookmark : faBookmark}
+                      color={isFavorite(house.id) ? 'gold' : 'gray'}
+                    />
+                  </Button>
                 </div>
               </Card.Body>
             </Card>
@@ -191,6 +203,11 @@ const MineProperty = () => {
                 </p>
                 <p style={{ marginLeft: '40px', marginTop: '5%' }}>
                   <strong>Negotiable:</strong> {selectedHouse.negotiable ? 'Yes' : 'No'}
+                </p>
+                <p style={{ marginLeft: '40px', marginTop: '5%' }}>
+                 <strong> Property type: </strong>
+                  {selectedHouse.property_type}
+                  <br />
                 </p>
                 <p style={{ marginLeft: '40px', marginTop: '5%' }}>
                   <strong>Contact Us:</strong> {selectedHouse.owner_contact}
@@ -241,7 +258,7 @@ const MineProperty = () => {
                         className="form-input"
                         required
                     />
-                  <Button variant="primary" type="submit">Send Message</Button>
+                  <Button style={{backgroundColor: 'blue'}} type="submit">Send Message</Button>
                 </form>
               </div>
             </div>

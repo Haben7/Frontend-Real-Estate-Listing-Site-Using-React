@@ -122,14 +122,11 @@ padding-top: 1px;
 .search-input,
 .price-input {
   border: none;
-  
-
 }
 
 .search-input::placeholder,
 .price-input::placeholder {
   color:rgb(55, 6, 134);
-
 }
 
 .search-btn {
@@ -277,18 +274,14 @@ color: black;
 footer{
   border-top: 1px solid rgb(39, 38, 38);
 }
-
 a{
   text-decoration: none;
   color: rgb(64, 53, 104);
   font-style: oblique;
-
 }
 #back{
   background-color: rgb(99, 41, 207);
 }
-
-
 .error-message {
   color: red;
   font-size: 14px;

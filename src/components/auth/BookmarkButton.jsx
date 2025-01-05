@@ -4,26 +4,22 @@ import axios from 'axios';
 const BookmarkButton = ({ houseId }) => {
     const [isBookmarked, setIsBookmarked] = useState(false);
     const [error, setError] = useState(null);
-
     const handleBookmark = async () => {
-        // Get the user's authentication token (assumed it's stored in localStorage)
-        const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
         if (!token) {
             setError('You must be logged in to bookmark a house.');
             return;
         }
-
-        // Make a POST request to the backend to add the house to the user's bookmarks
         try {
             const response = await fetch('http://localhost:8000/api/bookmark', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`, // Include the JWT token for authentication
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    house_id: houseId, // Send the house ID to be bookmarked
+                    house_id: houseId, 
                 }),
             });
 

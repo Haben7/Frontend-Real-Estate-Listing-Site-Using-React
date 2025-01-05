@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Button, Modal } from 'react-bootstrap'; // Ensure Modal is imported
-import { useParams } from 'react-router-dom'; // To get the city from the URL
+import { Card, Button, Modal } from 'react-bootstrap';
+import { useParams } from 'react-router-dom'; 
 import axios from 'axios';
 import NavBar from './NavBar';
 import City from './city';
@@ -8,16 +8,16 @@ import Footer from './footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faShower, faRuler,faMapMarkerAlt, faEnvelope, faDollarSign,faTag, faHome,faBookmark  } from '@fortawesome/free-solid-svg-icons';
 const HouseList = ({isBookmarked, onToggleBookmark}) => {
-    const { city } = useParams(); // Get the city name from the URL
+    const { city } = useParams(); 
     const [houses, setHouses] = useState([]);
-    const [selectedHouse, setSelectedHouse] = useState(null); // Initialize state for selected house
+    const [selectedHouse, setSelectedHouse] = useState(null); 
 
     useEffect(() => {
         const fetchHouses = async () => {
             try {
                 const response = await axios.get(`http://localhost:8000/api/houses/city/${encodeURIComponent(city)}`);
-                console.log(response.data); // Log the data structure to ensure correctness
-                setHouses(response.data.data); // Set houses with the API response
+                console.log(response.data); 
+                setHouses(response.data.data); 
             } catch (error) {
                 console.error('Error fetching houses:', error);
             }
@@ -27,11 +27,10 @@ const HouseList = ({isBookmarked, onToggleBookmark}) => {
     }, [city]);
 
     const handleOpen = (house) => {
-        setSelectedHouse(house); // Set the selected house to display in the modal
+        setSelectedHouse(house); 
     };
 
-    const handleClose = () => setSelectedHouse(null); // Close the modal
-
+    const handleClose = () => setSelectedHouse(null); 
     return (
         <>
             <NavBar />
@@ -55,7 +54,7 @@ const HouseList = ({isBookmarked, onToggleBookmark}) => {
                                         ) : (
                                             <div className="carousel-item active">
                                                 <img
-                                                    src="default-image-url.jpg" // Fallback image when there are no images
+                                                    src="default-image-url.jpg" 
                                                     alt="No Image Available"
                                                     style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                 />
@@ -91,7 +90,6 @@ const HouseList = ({isBookmarked, onToggleBookmark}) => {
                   <br />
                 </Card.Title>
 
-                  {/* <strong>Location:</strong> {house.location}<br /> */}
                 <strong>Price: </strong>
                   {house.price}$, {house.negotiable ? 'Negotiable': "Fixed"}<br/>
                   <FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -120,7 +118,6 @@ const HouseList = ({isBookmarked, onToggleBookmark}) => {
         <p>No properties available.</p>
       )}
 
-      {/* Modal for house details */}
       {selectedHouse && (
   <Modal show={true} onHide={handleClose} size="lg">
     <Modal.Header closeButton>
@@ -149,7 +146,6 @@ const HouseList = ({isBookmarked, onToggleBookmark}) => {
         </button>
       </div>
 
-      {/* Flexbox container for description and form */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
         {/* Left Column: Property Description */}
         <div style={{ width: '50%', padding: '20px' }}>
@@ -174,15 +170,12 @@ const HouseList = ({isBookmarked, onToggleBookmark}) => {
           <p style={{ marginLeft: '40px', marginTop: '5%' }}>
             <strong>Negotiable:</strong> {selectedHouse.negotiable ? 'Yes' : 'No'}
           </p>
-          {/* <p style={{ marginLeft: '40px', marginTop: '5%' }}>
-            <strong>Contact Us:</strong> {selectedHouse.owner_contact}
-          </p> */}
+         
           <p style={{ marginLeft: '40px', marginTop: '5%' }}>
             <strong>Description:</strong> {selectedHouse.description}
           </p>
         </div>
 
-        {/* Right Column: Contact Form */}
         <div style={{ width: '45%', padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
           <h2 style={{ fontSize: '30px', marginBottom: '20px' }}>Contact Us</h2>
           <form>

@@ -20,12 +20,12 @@ const LoginForm = () => {
       });
   
       // Save the token and user data
-      const userId = response.data.user.id; // Get the user ID here
+      const userId = response.data.user.id; 
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
   
-      // Redirect to the home page (or another page)
-      navigate(`/Mine/${userId}`); // Pass userId here
+      // Redirect
+      navigate(`/Mine/${userId}`); 
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     }

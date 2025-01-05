@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faShower, faRuler, faMapMarkerAlt, faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Pagination } from "flowbite-react";
-import { Carousel } from 'bootstrap'; // Import Bootstrap Carousel
+import { Carousel } from 'bootstrap'; 
 
 const PropertiesList = ({ isLoggedIn }) => {
   const [houses, setHouses] = useState([]);
@@ -46,14 +46,12 @@ const PropertiesList = ({ isLoggedIn }) => {
       fetchBookmarkedHouses();
     }
 
-    // Re-initialize Bootstrap carousels on component mount
     houses.forEach((house) => {
       const carousel = document.getElementById(`carousel-${house.id}`);
       if (carousel) {
-        // Initialize carousel manually if it's not already initialized
         new Carousel(carousel, {
-          ride: false, // Disable auto sliding
-          interval: false // Prevent auto sliding
+          ride: false, 
+          interval: false 
         });
       }
     });

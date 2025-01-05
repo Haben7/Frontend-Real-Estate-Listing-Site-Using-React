@@ -1,26 +1,23 @@
-import React, { useState } from 'react'; // Added useState for managing selectedHouse
+import React, { useState } from 'react'; 
 import { useLocation } from 'react-router-dom';
 import NavBar from './NavBar';
 import City from './city';
 import Footer from './footer';
-import { Card, Button, Modal } from 'react-bootstrap'; // Import Modal from react-bootstrap
+import { Card, Button, Modal } from 'react-bootstrap'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faShower, faRuler, faMapMarkerAlt, faDollarSign, faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 const ResultsPage = () => {
   const location = useLocation();
   const { houses } = location.state || { houses: [] };
-  const [selectedHouse, setSelectedHouse] = useState(null); // State for managing selected house
-  const [isBookmarked, setIsBookmarked] = useState(false); // State for bookmark
-
+  const [selectedHouse, setSelectedHouse] = useState(null); 
+  const [isBookmarked, setIsBookmarked] = useState(false); 
   const handleOpen = (house) => {
-    setSelectedHouse(house); // Set the selected house to display in the modal
+    setSelectedHouse(house); 
   };
-
-  const handleClose = () => setSelectedHouse(null); // Close the modal
-
+  const handleClose = () => setSelectedHouse(null); 
   const onToggleBookmark = () => {
-    setIsBookmarked(!isBookmarked); // Toggle bookmark state
+    setIsBookmarked(!isBookmarked); 
   };
 
   return (
@@ -42,14 +39,14 @@ const ResultsPage = () => {
                         <img
                           src={image}
                           alt={`${house.title} image ${imgIndex + 1}`}
-                          style={{ width: '100%', height: '200px', objectFit: 'cover' }} // Fixed height for images
+                          style={{ width: '100%', height: '200px', objectFit: 'cover' }} 
                         />
                       </div>
                     ))
                   ) : (
                     <div className="carousel-item active">
                       <img
-                        src="default-image-url.jpg" // Fallback image when there are no images
+                        src="default-image-url.jpg" 
                         alt="No Image Available"
                         style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                       />
@@ -136,9 +133,7 @@ const ResultsPage = () => {
               </button>
             </div>
 
-            {/* Flexbox container for description and form */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-              {/* Left Column: Property Description */}
               <div style={{ width: '50%', padding: '20px' }}>
                 <p style={{ textAlign: 'center', fontSize: '30px', fontStyle: 'italic' }}>{selectedHouse.property_type}</p>
                 <div style={{ marginLeft: '40px' }}>
@@ -161,15 +156,11 @@ const ResultsPage = () => {
                 <p style={{ marginLeft: '40px', marginTop: '5%' }}>
                   <strong>Negotiable:</strong> {selectedHouse.negotiable ? 'Yes' : 'No'}
                 </p>
-                {/* <p style={{ marginLeft: '40px', marginTop: '5%' }}>
-                  <strong>Contact Us:</strong> {selectedHouse.owner_contact}
-                </p> */}
                 <p style={{ marginLeft: '40px', marginTop: '5%' }}>
                   <strong>Description:</strong> {selectedHouse.description}
                 </p>
               </div>
 
-              {/* Right Column: Contact Form */}
               <div style={{ width: '45%', padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
                 <h2 style={{ fontSize: '30px', marginBottom: '20px' }}>Contact Us</h2>
                 <form>

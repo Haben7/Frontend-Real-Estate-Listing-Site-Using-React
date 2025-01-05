@@ -1,6 +1,6 @@
-import React, { useState } from 'react'; // Added useState for managing selectedHouse
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Card, Button, Modal } from 'react-bootstrap'; // Import Modal from react-bootstrap
+import { Card, Button, Modal } from 'react-bootstrap'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faShower, faRuler,faMapMarkerAlt, faEnvelope, faDollarSign,faTag, faHome  } from '@fortawesome/free-solid-svg-icons';
 import MineNav from './MineNav';
@@ -8,17 +8,14 @@ import MineCity from './minecity';
 const Result = () => {
     const location = useLocation();
     const { houses } = location.state || { houses: [] };
-    const [selectedHouse, setSelectedHouse] = useState(null); // State for managing selected house
-
+    const [selectedHouse, setSelectedHouse] = useState(null);
     const handleOpen = (house) => {
-        setSelectedHouse(house); // Set the selected house to display in the modal
+        setSelectedHouse(house); 
     };
-
-    const handleClose = () => setSelectedHouse(null); // Close the modal
+    const handleClose = () => setSelectedHouse(null); 
 
     return (
         <>
-        
             <MineNav />
             <div style={{paddingTop:'6%'}}>
             {houses.length === 0 ? (
@@ -35,14 +32,14 @@ const Result = () => {
                                                 <img
                                                     src={image}
                                                     alt={`${house.title} image ${imgIndex + 1}`}
-                                                    style={{ width: '100%', height: '200px', objectFit: 'cover' }} // Fixed height for images
+                                                    style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                 />
                                             </div>
                                         ))
                                     ) : (
                                         <div className="carousel-item active">
                                             <img
-                                                src="default-image-url.jpg" // Fallback image when there are no images
+                                                src="default-image-url.jpg" 
                                                 alt="No Image Available"
                                                 style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                             />
@@ -75,8 +72,6 @@ const Result = () => {
                    {house.property_type}
                   <br />
                 </Card.Title>
-
-                  {/* <strong>Location:</strong> {house.location}<br /> */}
                 <strong>Price: </strong>
                   {house.price}$, {house.negotiable ? 'Negotiable': "Fixed"}
                   <FontAwesomeIcon icon={faMapMarkerAlt} style={{ marginLeft: '20px', marginRight: '10px' }} />
@@ -94,7 +89,9 @@ const Result = () => {
                             
 
                 </Card.Text>
-                                <Button variant="primary" onClick={() => handleOpen(house)}>
+                                <Button 
+                                style = {{backgroundColor: 'blue'}}
+                                onClick={() => handleOpen(house)}>
                                     View Details
                                 </Button>
                             </Card.Body>

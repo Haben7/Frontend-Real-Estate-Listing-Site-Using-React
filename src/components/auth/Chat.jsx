@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import MineNav from './MineNav';
-import '../styles/Chat.css'; // Make sure to create this CSS file for additional styling.
+import '../styles/Chat.css';
 
 function Chat() {
     const [formData, setFormData] = useState({

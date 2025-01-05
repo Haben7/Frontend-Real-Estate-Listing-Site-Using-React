@@ -58,43 +58,9 @@ const MineSearch = () => {
         <div className="search-bar-container">
        
             <div className="search-bar" id='mainsearch'>
-                {error && <Alert variant="danger">{error}</Alert>} {/* Display error message */}
-                
-                {/* <Form.Group className="search-section">
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter location"
-                        value={location}
-                        onChange={(e) => setLocation(e.target.value)}
-                        className="search-input"
-                    />
-                </Form.Group>
-
+                {error && <Alert variant="danger">{error}</Alert>}
+            
                 <Form.Group className="search-section">
-                    <Form.Label>Bedrooms</Form.Label>
-                    <Form.Control
-                        type="number"
-                        placeholder="Number of bedrooms"
-                        value={bedrooms}
-                        onChange={(e) => setBedrooms(e.target.value)}
-                        className="search-input"
-                    />
-                </Form.Group>
-
-                <Form.Group className="search-section">
-                    <Form.Label>Bathrooms</Form.Label>
-                    <Form.Control
-                        type="number"
-                        placeholder="Number of bathrooms"
-                        value={bathrooms}
-                        onChange={(e) => setBathrooms(e.target.value)}
-                        className="search-input"
-                    />
-                </Form.Group> */}
-
-                <Form.Group className="search-section">
-                    {/* <Form.Label>Price Range</Form.Label> */}
                     <div className="d-flex justify-content-between">
                         <Form.Control
                             type="number"

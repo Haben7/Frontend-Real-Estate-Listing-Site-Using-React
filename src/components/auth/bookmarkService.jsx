@@ -1,13 +1,12 @@
 const API_URL = 'http://localhost:8000/api/bookmarks';
 
-// Fetch bookmarks
 export const fetchBookmarks = async () => {
-  const token = localStorage.getItem('token'); // Get the token from local storage
+  const token = localStorage.getItem('token');
   const response = await fetch(API_URL, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`, // Include the token for authorization
+      Authorization: `Bearer ${token}`, 
     },
   });
 
@@ -20,12 +19,12 @@ export const fetchBookmarks = async () => {
 
 // Add a bookmark
 export const addBookmark = async (houseId) => {
-  const token = localStorage.getItem('token'); // Get the token from local storage
+  const token = localStorage.getItem('token');
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`, // Include the token for authorization
+      Authorization: `Bearer ${token}`, 
     },
     body: JSON.stringify({ house_id: houseId }),
   });
@@ -39,11 +38,11 @@ export const addBookmark = async (houseId) => {
 
 // Remove a bookmark
 export const removeBookmark = async (houseId) => {
-  const token = localStorage.getItem('token'); // Get the token from local storage
+  const token = localStorage.getItem('token');
   const response = await fetch(`${API_URL}/${houseId}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${token}`, // Include the token for authorization
+      Authorization: `Bearer ${token}`, 
     },
   });
 

@@ -15,9 +15,9 @@
 }
 
 .bookmarked svg {
-  color: white; /* Keeps inside white */
-  stroke: black; /* Keeps the border black */
-  stroke-width: 2px; /* Adjusts thickness of the border */
+  color: white; 
+  stroke: black; 
+  stroke-width: 2px;
 }
 
 .bookmark-btn:hover svg {

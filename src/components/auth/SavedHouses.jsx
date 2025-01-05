@@ -9,7 +9,6 @@ const SavededHouses = () => {
   const [savedHouses, setSavedHouses] = useState([]);
 
   useEffect(() => {
-    // Fetch the favorite houses from localStorage
     const saved = localStorage.getItem('favoriteHouses');
     setSavedHouses(saved ? JSON.parse(saved) : []);
   }, []);
@@ -23,8 +22,8 @@ const SavededHouses = () => {
   return (
     <>
     <MineNav/>
-    <div style={{paddingTop:'6%'}}>
-      <h1>Your Favorite Houses</h1>
+    <div >
+      <h1 style={{paddingTop:'7%'}}>Your Favorite Houses</h1>
       {savedHouses.length > 0 ? (
         <div className="property-list">
           {savedHouses.map((house) => (
@@ -59,13 +58,24 @@ const SavededHouses = () => {
                   <strong>Price: </strong>{house.price} Birr<br />
                   <FontAwesomeIcon icon={faMapMarkerAlt} /> {house.location}
                 </Card.Text>
+                <div className="buttons-container">
+          <Button
+            variant="primary"
+            className="text-black bg-blue-200"
+            // onClick={() => handleOpen(house)}
+          >
+            View Details
+          </Button>
                 <Button
                   variant="danger"
+                  className="text-black bg-red-600"
+
                   onClick={() => removeFavoriteHouse(house.id)}
-                  style={{ marginTop: '10px' }}
-                >
-                  Remove from Favorites
+                  style={{ marginLeft: '25%' }}
+                  >
+                  Remove
                 </Button>
+                </div>
               </Card.Body>
             </Card>
           ))}

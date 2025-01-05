@@ -4,13 +4,18 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import MineNav from './MineNav';
 import MineCity from './minecity';
+import Footer from './minefooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBed, faShower, faRuler,faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
+import { faBed, faShower, faRuler, faMapMarkerAlt, faBookmark, faBookmark as faSolidBookmark } from '@fortawesome/free-solid-svg-icons';
 const MineHouse = () => {
     const { city } = useParams();
     const [house, setHouse] = useState([]);
     const [selectedHouse, setSelectedHouse] = useState(null); 
-
+    const [houses, setHouses] = useState([]);
+    const [savedHouse, setSavedHouse] = useState(() => {
+    const saved = localStorage.getItem('favoriteHouses');
+      return saved ? JSON.parse(saved) : [];
+    });  
     useEffect(() => {
         const fetchHouse = async () => {
             try {
@@ -31,6 +36,30 @@ const MineHouse = () => {
 
     const handleClose = () => setSelectedHouse(null); 
 
+
+    const addFavoriteHouse = (house) => {
+        if (!house.id) {
+            console.error("House ID is missing:", house);
+            return;
+        }
+        const updatedFavorites = [...savedHouse, house];
+        setSavedHouse(updatedFavorites);
+        localStorage.setItem('favoriteHouses', JSON.stringify(updatedFavorites));
+    };
+    
+      const removeFavoriteHouse = (houseId) => {
+        const updatedFavorites = savedHouse.filter((favHouse) => favHouse.id !== houseId);
+        setSavedHouse(updatedFavorites);
+        localStorage.setItem('favoriteHouses', JSON.stringify(updatedFavorites)); 
+      };
+    
+      const isFavorite = (houseId) => savedHouse.some((favHouse) => favHouse.id === houseId);
+    
+    
+      useEffect(() => {
+        
+        localStorage.setItem('favoriteHouses', JSON.stringify(savedHouse));
+      }, [savedHouse]);
     return (
         <>
             <MineNav />
@@ -45,9 +74,9 @@ const MineHouse = () => {
                                             house.images.map((image, imgIndex) => (
                                                 <div className={`carousel-item ${imgIndex === 0 ? 'active' : ''}`} key={imgIndex}>
                                                     <img
-                                                        src={image} // Access the image URL directly
+                                                        src={image}
                                                         alt={`House ${house.title} - Image ${imgIndex + 1}`}
-                                                        style={{ width: '100%', height: '200px', objectFit: 'cover' }} // Fixed height
+                                                        style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                                                     />
                                                 </div>
                                             ))
@@ -82,9 +111,12 @@ const MineHouse = () => {
                                 </div>
                                 <Card.Body>
                 <Card.Title>{house.title}</Card.Title>
+                <Card.Title>Posted By: { house.real_estate_name} </Card.Title>
+                <p>Site Name: {house.site_name}</p>
+
                 <Card.Text>
                 <Card.Title style={{ fontStyle:'italic',fontWeight:'lighter' }}>
-                   {house.property_type}
+                 property type:  {house.property_type}
                   <br />
                 </Card.Title>
 
@@ -105,9 +137,25 @@ const MineHouse = () => {
                             
 
                 </Card.Text>
-                                    <Button variant="primary" onClick={() => handleOpen(house)}>
-                                        View Details
-                                    </Button>
+                <div className="buttons-container">
+                       <Button variant="primary" 
+                      className="text-black bg-blue-200"
+                       onClick={() => handleOpen(house)}>View Details</Button> 
+              <Button
+                    variant="outline-secondary"
+                    onClick={() =>
+                      isFavorite(house.id)
+                        ? removeFavoriteHouse(house.id)
+                        : addFavoriteHouse(house)
+                    }
+                    style={{ marginLeft: '40%' }}
+                  >
+                    <FontAwesomeIcon
+                      icon={isFavorite(house.id) ? faSolidBookmark : faBookmark}
+                      color={isFavorite(house.id) ? 'gold' : 'gray'}
+                    />
+                  </Button>
+                </div>
                                 </Card.Body>
                             </Card>
                         ))}
@@ -171,7 +219,7 @@ const MineHouse = () => {
                 )}
             </div>
             <MineCity />
-
+            <Footer />
         </>
     );
 };

@@ -23,7 +23,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: rgba(255, 255, 255, 0.7); /* Make the text semi-transparent */
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
   z-index: 1;
 }
@@ -32,5 +32,5 @@
   margin-bottom: 30px;
   font-size: 3em;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow to make text stand out */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
 }
